@@ -188,3 +188,63 @@ for compound in range(0,len(mols)):
     else:
         Rule_of_Three_list.append("Fail")
 print(Rule_of_Three_list)
+
+# #%%
+# Create database for all compounds (100 compounds)
+with open("Create.sql", 'r') as sql_file:
+    sql_script = sql_file.read()
+db = sqlite3.connect("CompoundDatabase.db")
+try:
+    cursor = db.cursor()
+    cursor.executescript(sql_script)
+    db.commit()
+    db.close()
+except sqlite3.OperationalError: # Database already exists
+    pass
+
+try:
+    # Insert data into database
+    database = "CompoundDatabase.db"
+    conn = sqlite3.connect(database)
+    cur = conn.cursor()
+
+    compound_number = 0
+    for compound in mols[:]:
+
+        # Draw all the picture for 100 compounds
+        # save the image in a folder and save the file name of the image into the database
+        image = Draw.MolToImage(compound)
+        image_name = "image_" + str(compound_number+1) + ".png"
+        image.save("structure\\" + image_name)
+
+        # information to store into database
+        smiles = Chem.MolToSmiles(compound)
+        IUPAC = compound.GetProp('_Name')
+        MolecularWeight = round(Descriptors.MolWt(compound),3)
+        LogP = round(Descriptors.MolLogP(compound),3)
+        H_Bond_Donor = Lipinski.NumHDonors(compound)
+        H_Bond_Acceptor = Lipinski.NumHAcceptors(compound)
+        Rotatable_Bond = Lipinski.NumRotatableBonds(compound)
+        Number_of_Atom = Mol.GetNumAtoms(compound)
+        Molar_Refractivity = round(Crippen.MolMR(compound),3)
+        Formal_Charge = rdmolops.GetFormalCharge(compound)
+        Heavy_Atom_Count = Mol.GetNumHeavyAtoms(compound)
+        PSA = round(MolSurf.TPSA(compound),3)
+
+        Lipinski_Rule = Rule_of_Five_list[compound_number]
+        Ghose_Rule = Ghose_filter_list[compound_number]
+        REOS_Rule = REOS_filter_list[compound_number]
+        Verber_Rule = Verber_filter_list[compound_number]
+
+
+        sql = f'INSERT INTO Database VALUES ("{smiles}","{image_name}","{IUPAC}",{float(MolecularWeight)},{float(LogP)},{int(H_Bond_Donor)},{int(H_Bond_Acceptor)},{int(Rotatable_Bond)},{int(Number_of_Atom)},{float(Molar_Refractivity)},{int(Formal_Charge)},{int(Heavy_Atom_Count)},{float(PSA)},"{Lipinski_Rule}","{Ghose_Rule}","{REOS_Rule}","{Verber_Rule}")'
+        # sql = "DELETE FROM Database"
+        cur.execute(sql)
+        compound_number += 1
+
+    conn.commit()
+    cur.close()
+    conn.close()
+
+except sqlite3.IntegrityError: # data already insert
+    pass
