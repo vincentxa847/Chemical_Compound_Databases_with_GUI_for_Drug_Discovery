@@ -62,3 +62,30 @@ path of image was populated in the database for querying.
 Finally, a GUI interface was created using Tkinter to interact with the database.
 
 ## Result
+The GUI interface can search the compound in database through IUPAC name or SMILE 
+(Figure 3A). Examples of the IUPAC name and SMILE present in the search boxes to remind 
+user (Figure 3A). 
+
+This function can only take one argument at a time to avoid confusing (e.g. 
+a IUPAC name or a SMILE). If the IUPAC name and SMILE are inputted at the same time, a 
+message box will pop up (Figure3B). Therefore, the procedure of using this search function 
+is to clear up the placeholder and enter the IUPAC name or SMILE of the compound which 
+user wants to search in the database (Figure4). 
+
+After entering the IUPAC name or SMILE, 
+clicking the “Search” button to view the result of querying. “Clear” button needs to be clicked 
+before further querying, the information from last querying will be cleaned and ready for 
+next querying. “Filter” button can be utilized to filter the compounds in the database, there 
+are four filters available for filtering, user can decide which filter to apply, the filter can be 
+combined in use (e.g. user can user can apply Ghose, REOS and Verber filters or all four filters  
+at the same time, Figure5A). “Forward” and “Back” button can swich the information of 
+compound to another compound that passes the same set of filters (Figure5B) Also, user 
+can customize molecular weight, LogP, H bond donor and H bond acceptor of the filter 
+(Figure5C). But user should aware that this function require user to define all four 
+parameters, and the range of each parameter need to be defined.
+
+All compounds in the 
+database are presented using the table in the middle of the panel, the information of the 
+table will change when filter applied. It is worth noting that a save button will appear after 
+using the filter function, this can write the coordinates and information of compounds that 
+pass the filter to a sdf file named “output.sdf” in the current directory
