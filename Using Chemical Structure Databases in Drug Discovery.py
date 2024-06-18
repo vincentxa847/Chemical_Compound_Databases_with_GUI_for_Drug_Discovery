@@ -523,7 +523,7 @@ def Filter():
 # forward and back button for viewing list of compounds when filtering
 def forward(image_number):
     global list_of_structure  # renew image
-    global list_of_compound_information  # æ›´æ–° list_of_compound_information
+    global list_of_compound_information  # Update list_of_compound_information
     global buttom_forward
     global buttom_back
 
@@ -576,7 +576,7 @@ def clear_for_filter():
     global list_of_compound_information
     global no_data_available
 
-    # button çš„ grid_forget å¦‚æžœæ”¾åˆ° try except è£¡æœƒç„¡æ³•ä½œç”¨
+    # grid_forget would not work if put in try except block
     button_save.grid_forget()
     buttom_back.grid_forget()
     buttom_forward.grid_forget()
@@ -603,7 +603,7 @@ def save(data):
         mol = Chem.MolFromSmiles(smile[0])
         AllChem.Compute2DCoords(mol)
         Chem.MolToMolBlock(mol)
-        # mol = Chem.AddHs(data, addCoords=True)  # å°æ–¼ 3D coordinate éƒ½æœƒåŠ  hydrogen
+        # mol = Chem.AddHs(data, addCoords=True)  # hydorgen will be added for 3D coordinates
         mol.SetProp('IUPAC_name', str(smile[2]))
         mol.SetProp('Smile', str(smile[0]))
         mol.SetProp('Molecular Weight', str(smile[3]))
