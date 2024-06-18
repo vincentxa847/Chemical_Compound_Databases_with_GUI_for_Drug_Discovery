@@ -62,30 +62,39 @@ path of image was populated in the database for querying.
 Finally, a GUI interface was created using Tkinter to interact with the database.
 
 ## Result
-The GUI interface can search the compound in database through IUPAC name or SMILE 
-(Figure 3A). Examples of the IUPAC name and SMILE present in the search boxes to remind 
-user (Figure 3A). 
+The GUI interface can search the compound in database through IUPAC name or SMILE. Examples of the IUPAC name and SMILE present in the search boxes to remind 
+user.
+![image](https://github.com/vincentxa847/Using-Chemical-Structure-Databases-in-Drug-Discovery/assets/118545004/0631f73e-9da8-48ca-8680-55807562c25b)
+
 
 This function can only take one argument at a time to avoid confusing (e.g. 
 a IUPAC name or a SMILE). If the IUPAC name and SMILE are inputted at the same time, a 
-message box will pop up (Figure3B). Therefore, the procedure of using this search function 
+message box will pop up. *Therefore, the procedure of using this search function 
 is to clear up the placeholder and enter the IUPAC name or SMILE of the compound which 
-user wants to search in the database (Figure4). 
+user wants to search in the database*.
+![image](https://github.com/vincentxa847/Using-Chemical-Structure-Databases-in-Drug-Discovery/assets/118545004/fdaaa357-a37c-475f-aead-365925afb814)\
+*Search by IUPAC*\
+![image](https://github.com/vincentxa847/Using-Chemical-Structure-Databases-in-Drug-Discovery/assets/118545004/0b8eb8b5-51e0-4752-a384-af1a6e2e4ffb)\
+*Search by SMILE*
 
-After entering the IUPAC name or SMILE, 
-clicking the “Search” button to view the result of querying. “Clear” button needs to be clicked 
-before further querying, the information from last querying will be cleaned and ready for 
-next querying. “Filter” button can be utilized to filter the compounds in the database, there 
-are four filters available for filtering, user can decide which filter to apply, the filter can be 
-combined in use (e.g. user can user can apply Ghose, REOS and Verber filters or all four filters  
-at the same time, Figure5A). “Forward” and “Back” button can swich the information of 
-compound to another compound that passes the same set of filters (Figure5B) Also, user 
-can customize molecular weight, LogP, H bond donor and H bond acceptor of the filter 
-(Figure5C). But user should aware that this function require user to define all four 
-parameters, and the range of each parameter need to be defined.
+After entering the IUPAC name or SMILE, clicking the “Search” button to view the result of querying. “Clear” button needs to be clicked 
+before further querying, the information from last querying will be cleaned and ready for next querying. 
 
-All compounds in the 
-database are presented using the table in the middle of the panel, the information of the 
+“Filter” button can be utilized to filter the compounds in the database, there are four filters available for filtering, user can decide which filter to apply, the filter can be 
+combined in use (e.g. user can user can apply Ghose, REOS and Verber filters or all four filters at the same time). 
+“Forward” and “Back” button can swich the information of compound to another compound that passes the same set of filters Also, user can customize molecular weight, LogP, H bond donor and H bond acceptor of the filter. 
+But user should aware that this function require user to define all four parameters, and the range of each parameter need to be defined.
+
+All compounds in the database are presented using the table in the middle of the panel, the information of the 
 table will change when filter applied. It is worth noting that a save button will appear after 
 using the filter function, this can write the coordinates and information of compounds that 
-pass the filter to a sdf file named “output.sdf” in the current directory
+pass the filter to a sdf file named “output.sdf” in the current directory.
+![image](https://github.com/vincentxa847/Using-Chemical-Structure-Databases-in-Drug-Discovery/assets/118545004/7c792e3d-ac75-462d-bfc8-5c80edbcc638)
+* Click boxes on the upper right corner can be utilized to select which filter to apply, the filter can be applied in combine. After selecting filters, click the filter button
+* Forward and Back buttons are for switching to another compound that pass the same set of filters
+* User can customize the filter by typing in the parameter on the upper panel, 160-480 is the format to remind user that “From” and “To” need to be defined. To use the customize 
+filter, all four parameters need to be defined by user
+* Save button allows user to write the 2D coordinates and information of compounds that pass the filter to a sdf file
+
+![image](https://github.com/vincentxa847/Using-Chemical-Structure-Databases-in-Drug-Discovery/assets/118545004/08beca12-931d-4bcd-874c-94b262c4369a)\
+*Snapshot of the output.sdf. This kind of file can visualize compounds using Jmol or Pymol* 
